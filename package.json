@@ -1,0 +1,17 @@
+{
+  "name": "json-pointer",
+  "version": "0.1.0",
+  "description": "Follow RFC 6901 pointers into JSON data.",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": "./src/index.js",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "license": "BSD-3-Clause",
+  "dependencies": {}
+}
