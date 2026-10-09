@@ -38,3 +38,10 @@ The trade-off: by staying this small, the library will not validate JSON schema 
 - **Empty-string keys.** A pointer ending in `/` (e.g. `/foo/`) targets the object key `''`. This is legal per the RFC and is supported here.
 - **The `-` token.** For arrays, `-` means "one past the last element". `get` returns `undefined` for `-` because no such element exists; `set` treats `-` as an append. Reading `-` is not an error, which mirrors the RFC's framing of `-` as a position rather than an index.
 - **Whole-document pointer.** `''` (the empty string) refers to the entire document. `get` returns the document; `set` cannot reassign the caller's variable, so it invokes an optional `mutator` callback instead.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
